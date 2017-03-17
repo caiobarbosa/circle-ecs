@@ -9,7 +9,7 @@ JQ="jq --raw-output --exit-status"
 
 deploy_image() {
 	eval $(aws ecr get-login --region us-west-2)
-	docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/bellkev/circle-ecs:$CIRCLE_SHA1
+	docker push $AWS_ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/bellkev/circle-ecs:$CIRCLE_SHA1
 
 }
 

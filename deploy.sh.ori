@@ -8,8 +8,9 @@ set -o pipefail
 JQ="jq --raw-output --exit-status"
 
 deploy_image() {
-	eval $(aws ecr get-login --region us-west-2)
-	docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/bellkev/circle-ecs:$CIRCLE_SHA1
+
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
+    docker push bellkev/circle-ecs:$CIRCLE_SHA1 | cat # workaround progress weirdness
 
 }
 
